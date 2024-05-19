@@ -22,6 +22,23 @@ public class Cliente {
         this.cpf = cpf;
         this.endereco = endereco;
     }
+    
+     // Getters and setters
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cliente cliente = (Cliente) o;
+
+        return cpf != null ? cpf.equals(cliente.cpf) : cliente.cpf == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return cpf != null ? cpf.hashCode() : 0;
+    }
 
     public String getNome() {
         return nome;

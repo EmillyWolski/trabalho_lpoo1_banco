@@ -8,9 +8,24 @@ package com.mycompany.contai;
  *
  * @author emill
  */
+import java.util.ArrayList;
+
 public class Sistema {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+    private ArrayList<Cliente> listaClientes = new ArrayList<>();
+
+    // Método para adicionar um cliente à lista
+    public void adicionarCliente(Cliente cliente) {
+        listaClientes.add(cliente);
+    }
+
+    // Método para verificar se a lista contém um cliente
+    public boolean contemCliente(Cliente cliente) {
+        return listaClientes.contains(cliente);
+    }
+    
+    // Método para obter a lista de clientes
+    public ArrayList<Cliente> getListaClientes() {
+        return listaClientes;
     }
 }
