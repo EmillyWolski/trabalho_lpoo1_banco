@@ -7,7 +7,7 @@ de seus clientes. O novo sistema precisa ser em Java com interface SWING e segui
 
 <ul>
   <li>Herança para definir as classes Conta, ContaCorrente, ContaInvestimento;</li>
-  <li>Serão utilizadas classes abstratas quando necessário;</li>
+  <li>Classes abstratas quando necessário;</li>
   <li>Polimorfismo;</li>
   <li>Java Swing.</li>
 </ul>
