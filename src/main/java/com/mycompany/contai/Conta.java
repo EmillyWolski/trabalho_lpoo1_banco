@@ -8,6 +8,26 @@ package com.mycompany.contai;
  *
  * @author emill
  */
-public abstract class Conta implements ContaI{
-    
+public abstract class Conta implements ContaI {
+
+    public boolean deposita(double valor){
+        return false;
+    }
+
+    public boolean saca(double valor){
+        return false;
+    }
+
+    public Cliente getDono(){
+        return null;
+    }
+
+    public int getNumero(){
+        return 0;
+    }
+
+    public double getSaldo(){
+        return 0;
+    }
+
 }

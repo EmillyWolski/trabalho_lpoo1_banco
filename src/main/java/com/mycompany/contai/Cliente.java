@@ -4,6 +4,8 @@
  */
 package com.mycompany.contai;
 
+import java.util.Objects;
+
 /**
  *
  * @author emill
@@ -22,23 +24,9 @@ public class Cliente {
         this.cpf = cpf;
         this.endereco = endereco;
     }
-    
-     // Getters and setters
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Cliente cliente = (Cliente) o;
-
-        return cpf != null ? cpf.equals(cliente.cpf) : cliente.cpf == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return cpf != null ? cpf.hashCode() : 0;
-    }
+    // Getters and setters
 
     public String getNome() {
         return nome;
@@ -78,6 +66,37 @@ public class Cliente {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    Object getSobreNome() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void setSobreNome(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.cpf);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        return Objects.equals(this.cpf, other.cpf);
     }
     
     

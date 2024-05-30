@@ -9,23 +9,10 @@ package com.mycompany.contai;
  * @author emill
  */
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sistema {
 
-    private ArrayList<Cliente> listaClientes = new ArrayList<>();
-
-    // Método para adicionar um cliente à lista
-    public void adicionarCliente(Cliente cliente) {
-        listaClientes.add(cliente);
-    }
-
-    // Método para verificar se a lista contém um cliente
-    public boolean contemCliente(Cliente cliente) {
-        return listaClientes.contains(cliente);
-    }
+    public static List<Cliente> listaCliente = new ArrayList<>();
     
-    // Método para obter a lista de clientes
-    public ArrayList<Cliente> getListaClientes() {
-        return listaClientes;
-    }
 }

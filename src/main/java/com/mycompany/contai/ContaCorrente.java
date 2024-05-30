@@ -10,5 +10,10 @@ package com.mycompany.contai;
  */
 
 public class ContaCorrente extends Conta{
+
+    @Override
+    public void remunera() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
