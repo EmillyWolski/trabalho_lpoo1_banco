@@ -12,92 +12,65 @@ import java.util.Objects;
  */
 public class Cliente {
     private String nome;
-    private String sobrenome;
+    private String sobreNome;
     private String rg;
     private String cpf;
     private String endereco;
+    private Conta conta;
 
-    public Cliente(String nome, String sobrenome, String rg, String cpf, String endereco) {
+    public Cliente(String nome, String sobreNome, String rg, String cpf, String endereco) {
         this.nome = nome;
-        this.sobrenome = sobrenome;
+        this.sobreNome = sobreNome;
         this.rg = rg;
         this.cpf = cpf;
         this.endereco = endereco;
     }
 
-
-    // Getters and setters
-
     public String getNome() {
         return nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public String getEndereco() {
-        return endereco;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public String getSobreNome() {
+        return sobreNome;
+    }
+
+    public void setSobreNome(String sobreNome) {
+        this.sobreNome = sobreNome;
+    }
+
+    public String getRg() {
+        return rg;
     }
 
     public void setRg(String rg) {
         this.rg = rg;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getEndereco() {
+        return endereco;
     }
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
-    Object getSobreNome() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Conta getConta() {
+        return conta;
     }
 
-    void setSobreNome(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setConta(Conta conta) {
+        this.conta = conta;
     }
-    
-    
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + Objects.hashCode(this.cpf);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Cliente other = (Cliente) obj;
-        return Objects.equals(this.cpf, other.cpf);
-    }
-    
-    
 }

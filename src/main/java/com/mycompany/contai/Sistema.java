@@ -4,6 +4,10 @@
  */
 package com.mycompany.contai;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  *
  * @author emill
@@ -12,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sistema {
-
-    public static List<Cliente> listaCliente = new ArrayList<>();
+    public static HashMap<String,Cliente> hashClientes = new HashMap<>();
     
 }
