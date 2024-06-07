@@ -7,6 +7,9 @@ package com.mycompany.contai;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JLabel;
+
+
 
 /**
  *
@@ -17,12 +20,37 @@ public class Banco extends javax.swing.JFrame {
     private ClienteTableModel tableModel = new ClienteTableModel();
     private int linhaClicadaParaAtualizacao = -1;
     private Cliente clienteSelecionadoParaAtualizacao;
+    private javax.swing.JPanel dynamicFieldsPanel;
+    
+    private List<Conta> contas;
+    private static int contadorDeContas = 1000; // Início do contador de contas
+
 
     /**
      * Creates new form Banco
      */
     public Banco() {
         initComponents();
+        comboTipoConta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Conta", "Conta Corrente", "Conta Investimento" }));
+        comboTipoConta.setSelectedItem("Tipo de Conta");
+        contas = new ArrayList<>();
+        
+        // Adiciona um ouvinte de evento de clique do mouse à tabela de clientes
+        tabClienteScroll.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            tabClienteMouseClicked(evt); // Chama o método tabClienteMouseClicked quando ocorre um clique na tabela
+        }
+    });
+    }
+    
+    
+    public void addConta(Conta conta) {
+        contas.add(conta);
+    }
+
+    public static int gerarNumeroConta() {
+        return contadorDeContas++;
     }
 
     /**
@@ -34,6 +62,8 @@ public class Banco extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel13 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         sobrenome = new javax.swing.JPanel();
         nome = new javax.swing.JLabel();
@@ -56,12 +86,33 @@ public class Banco extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
-        jSeparator2 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelaListaClientes = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        comboTipoConta = new javax.swing.JComboBox<>();
+        depositoInicial = new javax.swing.JLabel();
+        txtDepositoInicial = new javax.swing.JTextField();
+        limite = new javax.swing.JLabel();
+        txtLimite = new javax.swing.JTextField();
+        numeroConta = new javax.swing.JLabel();
+        txtNumeroConta = new javax.swing.JTextField();
+        montanteMinimo = new javax.swing.JLabel();
+        txtMontanteMinimo = new javax.swing.JTextField();
+        depositoMinimo = new javax.swing.JLabel();
+        txtDepositoMinimo = new javax.swing.JTextField();
+        depositoInicialInvest = new javax.swing.JLabel();
+        txtDepositoInicialInvest = new javax.swing.JTextField();
+        btnCriarConta = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
+
+        jLabel13.setText("jLabel13");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,7 +200,6 @@ public class Banco extends javax.swing.JFrame {
         sobrenome.setLayout(sobrenomeLayout);
         sobrenomeLayout.setHorizontalGroup(
             sobrenomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(sobrenomeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sobrenomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +214,7 @@ public class Banco extends javax.swing.JFrame {
                                 .addComponent(btnAtualizar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnExcluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                                 .addComponent(btnListar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLimpar)
@@ -179,9 +229,9 @@ public class Banco extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addGroup(sobrenomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(sobrenomeLayout.createSequentialGroup()
-                                .addComponent(txtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+                                .addComponent(txtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                                 .addGap(3, 3, 3))
-                            .addComponent(txtEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)))
+                            .addComponent(txtEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)))
                     .addGroup(sobrenomeLayout.createSequentialGroup()
                         .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
@@ -189,8 +239,9 @@ public class Banco extends javax.swing.JFrame {
                     .addGroup(sobrenomeLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtSobreNome, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE))
-                    .addComponent(jSeparator1))
+                        .addComponent(txtSobreNome, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE))
+                    .addComponent(jSeparator1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         sobrenomeLayout.setVerticalGroup(
@@ -237,17 +288,96 @@ public class Banco extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Início", sobrenome);
 
-        jLabel3.setText("Vinculação de Cliente a uma Conta");
+        jLabel3.setText("Selecione um Cliente para vinculá-lo a uma Conta");
+
+        tabelaListaClientes.setModel(tableModel);
+        jScrollPane2.setViewportView(tabelaListaClientes);
+
+        jLabel5.setText("Selecione um Tipo de Conta");
+
+        jLabel6.setText("Informe os dados abaixo:");
+
+        comboTipoConta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboTipoConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoContaActionPerformed(evt);
+            }
+        });
+
+        depositoInicial.setText("Deposito Inicial");
+
+        txtDepositoInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDepositoInicialActionPerformed(evt);
+            }
+        });
+
+        limite.setText("Limite");
+
+        numeroConta.setText("N° Conta");
+
+        montanteMinimo.setText("Montante Mínimo");
+
+        depositoMinimo.setText("Depósito Mínimo");
+
+        depositoInicialInvest.setText("Depósito Inicial");
+
+        btnCriarConta.setText("Criar Conta");
+        btnCriarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarContaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
-                    .addComponent(jSeparator2))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jSeparator5)
+                    .addComponent(jSeparator2)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(depositoMinimo)
+                                    .addComponent(montanteMinimo, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDepositoMinimo)
+                                    .addComponent(txtMontanteMinimo)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboTipoConta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 422, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(limite, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(numeroConta, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(depositoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(24, 24, 24)
+                                        .addComponent(txtLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtNumeroConta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtDepositoInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(depositoInicialInvest, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDepositoInicialInvest))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCriarConta)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -255,9 +385,45 @@ public class Banco extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(comboTipoConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(510, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(depositoInicial)
+                    .addComponent(txtDepositoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(limite))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(numeroConta)
+                    .addComponent(txtNumeroConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMontanteMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(montanteMinimo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(depositoMinimo)
+                    .addComponent(txtDepositoMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDepositoInicialInvest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(depositoInicialInvest))
+                .addGap(18, 18, 18)
+                .addComponent(btnCriarConta)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cliente", jPanel2);
@@ -271,7 +437,7 @@ public class Banco extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
                     .addComponent(jSeparator3)))
         );
         jPanel3Layout.setVerticalGroup(
@@ -290,7 +456,7 @@ public class Banco extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
+            .addGap(0, 622, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,6 +564,85 @@ public class Banco extends javax.swing.JFrame {
         linhaClicadaParaAtualizacao=-1;
     }//GEN-LAST:event_btnLimparActionPerformed
 
+    private void comboTipoContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoContaActionPerformed
+        String selectedTipoConta = (String) comboTipoConta.getSelectedItem();
+
+        // Primeiro, ocultamos todos os campos
+        depositoInicial.setVisible(false);
+        txtDepositoInicial.setVisible(false);
+        depositoInicialInvest.setVisible(false);
+        txtDepositoInicialInvest.setVisible(false);
+        depositoMinimo.setVisible(false);
+        txtDepositoMinimo.setVisible(false);
+        montanteMinimo.setVisible(false);
+        txtMontanteMinimo.setVisible(false);
+        limite.setVisible(false);
+        txtLimite.setVisible(false);
+        numeroConta.setVisible(false);
+        txtNumeroConta.setVisible(false);
+        btnCriarConta.setVisible(false);
+
+        // Em seguida, exibimos apenas os campos correspondentes ao tipo de conta selecionado
+        if ("Conta Corrente".equals(selectedTipoConta)) {
+            depositoInicial.setVisible(true);
+            txtDepositoInicial.setVisible(true);
+            limite.setVisible(true);
+            txtLimite.setVisible(true);
+            numeroConta.setVisible(true);
+            txtNumeroConta.setVisible(true);
+            btnCriarConta.setVisible(true);
+        } else if ("Conta Investimento".equals(selectedTipoConta)) {
+            montanteMinimo.setVisible(true);
+            txtMontanteMinimo.setVisible(true);
+            depositoMinimo.setVisible(true);
+            txtDepositoMinimo.setVisible(true);
+            depositoInicialInvest.setVisible(true);
+            txtDepositoInicialInvest.setVisible(true);
+            btnCriarConta.setVisible(true);
+        }
+    }//GEN-LAST:event_comboTipoContaActionPerformed
+
+    private void txtDepositoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepositoInicialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDepositoInicialActionPerformed
+
+    private void btnCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarContaActionPerformed
+        String selectedTipoConta = (String) comboTipoConta.getSelectedItem();
+
+        // Verifica se um cliente está selecionado na tabela
+        if (clienteSelecionadoParaAtualizacao != null) {
+            int numeroConta = Banco.gerarNumeroConta();
+            txtNumeroConta.setText(String.valueOf(numeroConta));
+
+            if ("Conta Corrente".equals(selectedTipoConta)) {
+                double depositoInicial = Double.parseDouble(txtDepositoInicial.getText());
+                double limite = Double.parseDouble(txtLimite.getText());
+                
+                ContaCorrente contaCorrente = new ContaCorrente(clienteSelecionadoParaAtualizacao, numeroConta, depositoInicial, limite);
+                // Adicionar conta ao cliente
+                clienteSelecionadoParaAtualizacao.setConta(contaCorrente);
+                // Adicionar conta à lista de contas do banco
+                addConta(contaCorrente);
+                JOptionPane.showMessageDialog(null, "Conta Corrente criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+            } else if ("Conta Investimento".equals(selectedTipoConta)) {
+                
+                double montanteMinimo = Double.parseDouble(txtMontanteMinimo.getText());
+                double depositoMinimo = Double.parseDouble(txtDepositoMinimo.getText());
+                double depositoInicialInvest = Double.parseDouble(txtDepositoInicialInvest.getText());
+                
+                ContaInvestimento contaInvestimento = new ContaInvestimento(clienteSelecionadoParaAtualizacao, numeroConta, depositoInicialInvest, montanteMinimo, depositoMinimo);
+                // Adicionar conta ao cliente
+                clienteSelecionadoParaAtualizacao.setConta(contaInvestimento);
+                // Adicionar conta à lista de contas do banco
+                addConta(contaInvestimento);
+                JOptionPane.showMessageDialog(null, "Conta Investimento criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione um cliente antes de criar uma conta.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCriarContaActionPerformed
+
     private void tabClienteMouseClicked(java.awt.event.MouseEvent evt) {                                        
         //Pega a linha clicada
         linhaClicadaParaAtualizacao = this.tabClienteScroll.rowAtPoint(evt.getPoint());
@@ -432,10 +677,12 @@ public class Banco extends javax.swing.JFrame {
             txtCPF.setText(clienteSelecionadoParaAtualizacao.getCpf());
             return null;
         }
-        clienteSelecionadoParaAtualizacao.setEndereco(txtEndereco.getText());
+        
         clienteSelecionadoParaAtualizacao.setNome(txtNome.getText());
-        clienteSelecionadoParaAtualizacao.setRg(txtRG.getText());
         clienteSelecionadoParaAtualizacao.setSobreNome(txtSobreNome.getText());
+        clienteSelecionadoParaAtualizacao.setRg(txtRG.getText());
+        clienteSelecionadoParaAtualizacao.setEndereco(txtEndereco.getText());
+        
         return clienteSelecionadoParaAtualizacao;
                 
     }
@@ -487,30 +734,51 @@ public class Banco extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnCriarConta;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnListar;
+    private javax.swing.JComboBox<String> comboTipoConta;
     private javax.swing.JLabel cpf;
+    private javax.swing.JLabel depositoInicial;
+    private javax.swing.JLabel depositoInicialInvest;
+    private javax.swing.JLabel depositoMinimo;
     private javax.swing.JLabel endereco;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel limite;
+    private javax.swing.JLabel montanteMinimo;
     private javax.swing.JLabel nome;
+    private javax.swing.JLabel numeroConta;
     private javax.swing.JLabel rg;
     private javax.swing.JPanel sobrenome;
     private javax.swing.JTable tabClienteScroll;
+    private javax.swing.JTable tabelaListaClientes;
     private javax.swing.JTextField txtCPF;
+    private javax.swing.JTextField txtDepositoInicial;
+    private javax.swing.JTextField txtDepositoInicialInvest;
+    private javax.swing.JTextField txtDepositoMinimo;
     private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtLimite;
+    private javax.swing.JTextField txtMontanteMinimo;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNumeroConta;
     private javax.swing.JTextField txtRG;
     private javax.swing.JTextField txtSobreNome;
     // End of variables declaration//GEN-END:variables

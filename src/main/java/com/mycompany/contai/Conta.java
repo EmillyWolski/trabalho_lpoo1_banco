@@ -9,25 +9,67 @@ package com.mycompany.contai;
  * @author emill
  */
 public abstract class Conta implements ContaI {
+    private Cliente dono;
+    private int numero;
+    private double saldo;
 
-    public boolean deposita(double valor){
-        return false;
+    public Conta(Cliente dono, int numero, double saldoInicial) {
+        this.dono = dono;
+        this.numero = numero;
+        this.saldo = saldoInicial;
     }
 
-    public boolean saca(double valor){
-        return false;
+    @Override
+    public boolean deposita(double valor) {
+        if (valor > 0) {
+            saldo += valor;
+            return true;
+        } else {
+            System.out.println("O valor do depósito deve ser positivo.");
+            return false;
+        }
     }
 
-    public Cliente getDono(){
-        return null;
+    @Override
+    public boolean saca(double valor) {
+        if (valor > 0) {
+            if (valor <= saldo) {
+                saldo -= valor;
+                return true;
+            } else {
+                System.out.println("Saldo insuficiente.");
+                return false;
+            }
+        } else {
+            System.out.println("O valor do saque deve ser positivo.");
+            return false;
+        }
     }
 
-    public int getNumero(){
-        return 0;
+    @Override
+    public Cliente getDono() {
+        return dono;
     }
 
-    public double getSaldo(){
-        return 0;
+    @Override
+    public int getNumero() {
+        return numero;
     }
 
+    @Override
+    public double getSaldo() {
+        return saldo;
+    }
+
+    @Override
+    public abstract void remunera();
+
+    @Override
+    public String toString() {
+        return "Conta{" +
+                "dono=" + dono +
+                ", numero=" + numero +
+                ", saldo=" + saldo +
+                '}';
+    }
 }

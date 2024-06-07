@@ -8,36 +8,54 @@ package com.mycompany.contai;
  *
  * @author emill
  */
-public class ContaInvestimento extends Conta{
-    private double saldo;
+import javax.swing.JOptionPane;
+
+public class ContaInvestimento extends Conta {
+    private double montanteMinimo;
+    private double depositoMinimo;
+
+    public ContaInvestimento(Cliente dono, int numero, double saldoInicial, double montanteMinimo, double depositoMinimo) {
+        super(dono, numero, saldoInicial);
+        this.montanteMinimo = montanteMinimo;
+        this.depositoMinimo = depositoMinimo;
+    }
+
     @Override
     public boolean deposita(double valor) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (valor >= depositoMinimo) {
+            return super.deposita(valor);
+        } else {
+            JOptionPane.showMessageDialog(null, "O valor do depósito deve ser maior ou igual ao depósito mínimo.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
     }
 
     @Override
     public boolean saca(double valor) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Cliente getDono() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public int getNumero() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public double getSaldo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (valor > 0) {
+            if (getSaldo() - valor >= montanteMinimo) {
+                return super.saca(valor);
+            } else {
+                JOptionPane.showMessageDialog(null, "O valor do saque não pode deixar o saldo abaixo do montante mínimo.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                return false;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "O valor do saque deve ser positivo.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
     }
 
     @Override
     public void remunera() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        double saldoAtual = getSaldo();
+        saldoAtual += saldoAtual * 0.02; // Aplicar remuneração de 2%
     }
-    
+
+    @Override
+    public String toString() {
+        return super.toString() + ", ContaInvestimento{" +
+                "montanteMinimo=" + montanteMinimo +
+                ", depositoMinimo=" + depositoMinimo +
+                '}';
+    }
 }
