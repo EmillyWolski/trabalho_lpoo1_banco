@@ -7,7 +7,6 @@ package com.mycompany.contai;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 

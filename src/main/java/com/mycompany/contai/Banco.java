@@ -7,9 +7,8 @@ package com.mycompany.contai;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JLabel;
-
-
+import java.util.Collections;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -44,18 +43,18 @@ public class Banco extends javax.swing.JFrame {
         // Adiciona um ouvinte de evento de clique do mouse à tabela de clientes
         tabClienteScroll.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            tabClienteMouseClicked(evt); // Chama o método tabClienteMouseClicked quando ocorre um clique na tabela
-        }
-    });
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabClienteMouseClicked(evt); // Chama o método tabClienteMouseClicked quando ocorre um clique na tabela
+            }
+        });
         
         // Adiciona um ouvinte de evento de clique do mouse à tabela de clientes da tela 2
         tabelaListaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
-        @Override
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            tabelaListaClientesMouseClicked(evt); // Chama o método tabClienteMouseClicked quando ocorre um clique na tabela
-        }
-    });
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaListaClientesMouseClicked(evt); // Chama o método tabClienteMouseClicked quando ocorre um clique na tabela
+            }
+        });
     }
     
     public void addConta(Conta conta) {
@@ -264,18 +263,18 @@ public class Banco extends javax.swing.JFrame {
                                 .addGap(36, 36, 36)
                                 .addComponent(txtRG))
                             .addGroup(sobrenomeLayout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(btnCadastrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAtualizar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnExcluir)
-                                .addGap(50, 50, 50)
+                                .addGap(68, 68, 68)
                                 .addComponent(btnListar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLimpar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboOrdenacao, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(comboOrdenacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(sobrenomeLayout.createSequentialGroup()
                         .addGroup(sobrenomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -839,7 +838,17 @@ public class Banco extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mensagem, "Informações da Conta", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnBuscarContaActionPerformed
 
+    
+    
     private void comboOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacaoActionPerformed
+        
+        // Primeiro, ocultamos todos os campos
+        deposito.setVisible(false);
+        txtDeposito.setVisible(false);
+        saque.setVisible(false);
+        txtSaque.setVisible(false);
+        btnEfetuarOperacao.setVisible(false);
+        
         
         String operacaoSelecionada = (String) comboOperacao.getSelectedItem();
         String cpf = txtCampoCPF.getText();
@@ -863,13 +872,6 @@ public class Banco extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Cliente não possui uma conta associada.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
-
-        // Primeiro, ocultamos todos os campos
-        deposito.setVisible(false);
-        txtDeposito.setVisible(false);
-        saque.setVisible(false);
-        txtSaque.setVisible(false);
-        btnEfetuarOperacao.setVisible(false);
 
         switch (operacaoSelecionada) {
             case "Saque":
@@ -945,7 +947,6 @@ public class Banco extends javax.swing.JFrame {
     }
     
     
-    
     private void btnEfetuarOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEfetuarOperacaoActionPerformed
         String operacaoSelecionada = (String) comboOperacao.getSelectedItem();
         String cpf = txtCampoCPF.getText();
@@ -978,9 +979,30 @@ public class Banco extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEfetuarOperacaoActionPerformed
 
     private void comboOrdenacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOrdenacaoActionPerformed
-        // TODO add your handling code here:
+        String criterioSelecionado = (String) comboOrdenacao.getSelectedItem();
+        List<Cliente> clientes = new ArrayList<>(Sistema.hashClientes.values());
+
+        switch (criterioSelecionado) {
+            case "Nome":
+                Collections.sort(clientes, OrdenacaoCliente.nomeOrdenacao);
+                break;
+            case "Sobrenome":
+                Collections.sort(clientes, OrdenacaoCliente.sobrenomeOrdenacao);
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Critério de ordenação não suportado.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+        }
+
+        atualizarListaClientes(clientes);
     }//GEN-LAST:event_comboOrdenacaoActionPerformed
 
+    
+    private void atualizarListaClientes(List<Cliente> clientes) {
+        tableModel.setListaContatos(clientes);
+    }
+    
+    
     private void tabClienteMouseClicked(java.awt.event.MouseEvent evt) {                                        
         //Pega a linha clicada
         linhaClicadaParaAtualizacao = this.tabClienteScroll.rowAtPoint(evt.getPoint());
