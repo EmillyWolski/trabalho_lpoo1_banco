@@ -142,6 +142,11 @@ public class Banco extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
         comboOperacao = new javax.swing.JComboBox<>();
+        deposito = new javax.swing.JLabel();
+        txtDeposito = new javax.swing.JTextField();
+        saque = new javax.swing.JLabel();
+        txtSaque = new javax.swing.JTextField();
+        btnEfetuarOperacao = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
 
         jLabel13.setText("jLabel13");
@@ -498,6 +503,17 @@ public class Banco extends javax.swing.JFrame {
             }
         });
 
+        deposito.setText("Valor do depósito");
+
+        saque.setText("Valor do saque");
+
+        btnEfetuarOperacao.setText("Efetuar operação");
+        btnEfetuarOperacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEfetuarOperacaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -521,9 +537,19 @@ public class Banco extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboOperacao, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnEfetuarOperacao)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboOperacao, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(deposito, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtDeposito))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(saque, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtSaque))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -544,7 +570,17 @@ public class Banco extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comboOperacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(373, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deposito)
+                    .addComponent(txtDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(saque)
+                    .addComponent(txtSaque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addComponent(btnEfetuarOperacao)
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Conta", jPanel3);
@@ -792,8 +828,142 @@ public class Banco extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarContaActionPerformed
 
     private void comboOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacaoActionPerformed
-        // TODO add your handling code here:
+        
+        String operacaoSelecionada = (String) comboOperacao.getSelectedItem();
+        String cpf = txtCampoCPF.getText();
+
+        // Verifica se o CPF foi digitado
+        if (cpf.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, digite o CPF do cliente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Verifica se o cliente com o CPF fornecido existe no banco de dados
+        Cliente cliente = Sistema.hashClientes.get(cpf);
+        if (cliente == null) {
+            JOptionPane.showMessageDialog(this, "Cliente com o CPF fornecido não encontrado.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Verifica se o cliente tem uma conta associada
+        Conta conta = cliente.getConta();
+        if (conta == null) {
+            JOptionPane.showMessageDialog(this, "Cliente não possui uma conta associada.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Primeiro, ocultamos todos os campos
+        deposito.setVisible(false);
+        txtDeposito.setVisible(false);
+        saque.setVisible(false);
+        txtSaque.setVisible(false);
+        btnEfetuarOperacao.setVisible(false);
+
+        switch (operacaoSelecionada) {
+            case "Saque":
+                saque.setVisible(true);
+                txtSaque.setVisible(true);
+                btnEfetuarOperacao.setVisible(true);
+                break;
+            case "Depósito":
+                deposito.setVisible(true);
+                txtDeposito.setVisible(true);
+                btnEfetuarOperacao.setVisible(true);
+                break;
+            case "Ver saldo":
+                verificarSaldo(conta);
+                break;
+            case "Remunera":
+                remunerarConta(conta);
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Operação não suportada.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_comboOperacaoActionPerformed
+
+    private void realizarSaque(Conta conta) {
+        // Lógica para realizar um saque
+        String valorSaqueStr = txtSaque.getText();
+        if (valorSaqueStr == null || valorSaqueStr.isEmpty()) {
+            return;
+        }
+
+        try {
+            double valorSaque = Double.parseDouble(valorSaqueStr);
+            if (conta.saca(valorSaque)) {
+                JOptionPane.showMessageDialog(this, "Saque realizado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Falha ao realizar o saque.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } 
+        catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Valor inválido. Por favor, digite um número válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+    }
+
+    private void realizarDeposito(Conta conta) {
+        // Lógica para realizar um depósito
+        String valorDepositoStr = txtDeposito.getText();
+        if (valorDepositoStr == null || valorDepositoStr.isEmpty()) {
+            return;
+        }
+
+        try {
+            double valorDeposito = Double.parseDouble(valorDepositoStr);
+            if (conta.deposita(valorDeposito)) {
+                JOptionPane.showMessageDialog(this, "Depósito realizado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Falha ao realizar o depósito.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Valor inválido. Por favor, digite um número válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void verificarSaldo(Conta conta) {
+        // Lógica para verificar saldo
+        double saldo = conta.getSaldo();
+        JOptionPane.showMessageDialog(this, "Saldo atual: " + saldo, "Saldo", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void remunerarConta(Conta conta) {
+        // Lógica para remunerar a conta
+        conta.remunera();
+        JOptionPane.showMessageDialog(this, "Conta remunerada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    
+    
+    private void btnEfetuarOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEfetuarOperacaoActionPerformed
+        String operacaoSelecionada = (String) comboOperacao.getSelectedItem();
+        String cpf = txtCampoCPF.getText();
+
+        // Verifica se o cliente com o CPF fornecido existe no banco de dados
+        Cliente cliente = Sistema.hashClientes.get(cpf);
+        if (cliente == null) {
+            JOptionPane.showMessageDialog(this, "Cliente com o CPF fornecido não encontrado.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Verifica se o cliente tem uma conta associada
+        Conta conta = cliente.getConta();
+        if (conta == null) {
+            JOptionPane.showMessageDialog(this, "Cliente não possui uma conta associada.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Verifica se a operação selecionada é um Saque ou Depósito
+        switch (operacaoSelecionada) {
+            case "Saque":
+                realizarSaque(conta);
+                break;
+            case "Depósito":
+                realizarDeposito(conta);
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Operação não suportada.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEfetuarOperacaoActionPerformed
 
     private void tabClienteMouseClicked(java.awt.event.MouseEvent evt) {                                        
         //Pega a linha clicada
@@ -897,6 +1067,7 @@ public class Banco extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarConta;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCriarConta;
+    private javax.swing.JButton btnEfetuarOperacao;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnListar;
@@ -905,6 +1076,7 @@ public class Banco extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboOperacao;
     private javax.swing.JComboBox<String> comboTipoConta;
     private javax.swing.JLabel cpf;
+    private javax.swing.JLabel deposito;
     private javax.swing.JLabel depositoInicial;
     private javax.swing.JLabel depositoInicialInvest;
     private javax.swing.JLabel depositoMinimo;
@@ -936,11 +1108,13 @@ public class Banco extends javax.swing.JFrame {
     private javax.swing.JLabel nome;
     private javax.swing.JLabel numeroConta;
     private javax.swing.JLabel rg;
+    private javax.swing.JLabel saque;
     private javax.swing.JPanel sobrenome;
     private javax.swing.JTable tabClienteScroll;
     private javax.swing.JTable tabelaListaClientes;
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtCampoCPF;
+    private javax.swing.JTextField txtDeposito;
     private javax.swing.JTextField txtDepositoInicial;
     private javax.swing.JTextField txtDepositoInicialInvest;
     private javax.swing.JTextField txtDepositoMinimo;
@@ -950,6 +1124,7 @@ public class Banco extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumeroConta;
     private javax.swing.JTextField txtRG;
+    private javax.swing.JTextField txtSaque;
     private javax.swing.JTextField txtSobreNome;
     // End of variables declaration//GEN-END:variables
 }

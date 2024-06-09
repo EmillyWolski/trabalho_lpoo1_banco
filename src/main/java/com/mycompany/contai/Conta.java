@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.contai;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -25,7 +27,7 @@ public abstract class Conta implements ContaI {
             saldo += valor;
             return true;
         } else {
-            System.out.println("O valor do depósito deve ser positivo.");
+            JOptionPane.showMessageDialog(null, "O valor do depósito deve ser positivo.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return false;
         }
     }
@@ -37,11 +39,11 @@ public abstract class Conta implements ContaI {
                 saldo -= valor;
                 return true;
             } else {
-                System.out.println("Saldo insuficiente.");
+                JOptionPane.showMessageDialog(null, "Saldo insuficiente.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 return false;
             }
         } else {
-            System.out.println("O valor do saque deve ser positivo.");
+            JOptionPane.showMessageDialog(null, "O valor do saque deve ser positivo.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return false;
         }
     }
