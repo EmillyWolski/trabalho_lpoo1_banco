@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.util.Collections;
-import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -64,7 +63,6 @@ public class Banco extends javax.swing.JFrame {
     public static int gerarNumeroConta() {
         return contadorDeContas++;
     }
-    
     
     private void limparCampos() {
         txtDepositoInicial.setText("");
@@ -258,23 +256,23 @@ public class Banco extends javax.swing.JFrame {
                         .addGap(122, 122, 122))
                     .addGroup(sobrenomeLayout.createSequentialGroup()
                         .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(sobrenomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(sobrenomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(sobrenomeLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(txtRG))
-                            .addGroup(sobrenomeLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAtualizar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnExcluir)
-                                .addGap(68, 68, 68)
+                                .addGap(56, 56, 56)
                                 .addComponent(btnListar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLimpar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboOrdenacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(comboOrdenacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(sobrenomeLayout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(txtRG))))
                     .addGroup(sobrenomeLayout.createSequentialGroup()
                         .addGroup(sobrenomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -425,20 +423,15 @@ public class Banco extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtDepositoInicialInvest))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(depositoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(limite, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(numeroConta, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(depositoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(numeroConta, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(24, 24, 24)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(24, 24, 24)
-                                        .addComponent(txtLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtNumeroConta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtDepositoInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                    .addComponent(txtLimite)
+                                    .addComponent(txtDepositoInicial)
+                                    .addComponent(txtNumeroConta)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnCriarConta)))
@@ -472,9 +465,9 @@ public class Banco extends javax.swing.JFrame {
                     .addComponent(txtLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(limite))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(numeroConta)
-                    .addComponent(txtNumeroConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumeroConta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numeroConta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMontanteMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -629,91 +622,174 @@ public class Banco extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
+    private void btnEfetuarOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEfetuarOperacaoActionPerformed
+        String operacaoSelecionada = (String) comboOperacao.getSelectedItem();
+        String cpf = txtCampoCPF.getText();
 
-    private void txtSobreNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSobreNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSobreNomeActionPerformed
-
-    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCPFActionPerformed
-
-    private void txtRGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRGActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRGActionPerformed
-
-    private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEnderecoActionPerformed
-
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        String nome = txtNome.getText();
-        String sobreNome = txtSobreNome.getText();
-        String rg = txtRG.getText();
-        String cpf = txtCPF.getText();
-        String endereco = txtEndereco.getText();
-        
-        if(cpf.equals("")){
-            JOptionPane.showMessageDialog(null,"CPF não pode ser vazio.\n", "Informação", JOptionPane.INFORMATION_MESSAGE);
-            return;            
-        }
-        
-        Cliente c = new Cliente(nome,sobreNome,rg,cpf,endereco);
-        Sistema.hashClientes.put(cpf, c);
-        this.tableModel.setListaContatos(Sistema.hashClientes);
-        this.tabClienteScroll.setRowSelectionInterval(Sistema.hashClientes.size()-1, Sistema.hashClientes.size()-1);
-        this.clienteSelecionadoParaAtualizacao = c;
-        linhaClicadaParaAtualizacao = Sistema.hashClientes.size()-1;
-    }//GEN-LAST:event_btnCadastrarActionPerformed
-
-    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        Cliente c = this.getClienteParaAtualizar();
-        if(c==null){
+        Cliente cliente = Sistema.hashClientes.get(cpf);
+        if (cliente == null) {
+            JOptionPane.showMessageDialog(this, "Cliente com o CPF fornecido não encontrado.", "Aviso", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Sistema.hashClientes.replace(c.getCpf(), c);
-        this.tableModel.atualizarCliente(linhaClicadaParaAtualizacao);
-    }//GEN-LAST:event_btnAtualizarActionPerformed
 
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        List<Cliente> listaExcluir = getClienteParaExcluirDaTabela();
-        if(listaExcluir.isEmpty()){
-            JOptionPane.showMessageDialog(null,"Selecione alguma linha para excluir.\n", "Informação", JOptionPane.INFORMATION_MESSAGE);
-            return;            
+        // Verifica se o cliente tem uma conta associada
+        Conta conta = cliente.getConta();
+        if (conta == null) {
+            JOptionPane.showMessageDialog(this, "Cliente não possui uma conta associada.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-        this.tableModel.removeClientes(listaExcluir);
-        for(Cliente c:listaExcluir)
-            Sistema.hashClientes.remove(c.getCpf());
-        this.clienteSelecionadoParaAtualizacao = null;
-        linhaClicadaParaAtualizacao=-1;
-    }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        tableModel.setListaContatos(Sistema.hashClientes);
-        this.clienteSelecionadoParaAtualizacao = null;
-        linhaClicadaParaAtualizacao=-1;
-    }//GEN-LAST:event_btnListarActionPerformed
-
-    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        txtNome.setText("");
-        txtSobreNome.setText("");
-        txtRG.setText("");
-        txtCPF.setText("");
-        txtEndereco.setText("");
-        tableModel.setListaContatos(Sistema.hashClientes);
-        
-        //this.clienteSelecionadoParaAtualizacao = null;;
-        //linhaClicadaParaAtualizacao=-1;
-        
-        //a limpeza dos campos de texto afetará apenas tableModel e não tbListaCliente
-        if (tabelaListaClientes.getModel() == tableModel) {
-            this.clienteSelecionadoParaAtualizacao = null;
-            linhaClicadaParaAtualizacao = -1;
+        // Verifica se a operação selecionada é um Saque ou Depósito
+        switch (operacaoSelecionada) {
+            case "Saque":
+            realizarSaque(conta);
+            break;
+            case "Depósito":
+            realizarDeposito(conta);
+            break;
+            default:
+            JOptionPane.showMessageDialog(this, "Operação não suportada.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnLimparActionPerformed
+    }//GEN-LAST:event_btnEfetuarOperacaoActionPerformed
+
+    private void comboOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacaoActionPerformed
+
+        deposito.setVisible(false);
+        txtDeposito.setVisible(false);
+        saque.setVisible(false);
+        txtSaque.setVisible(false);
+        btnEfetuarOperacao.setVisible(false);
+
+        String operacaoSelecionada = (String) comboOperacao.getSelectedItem();
+        String cpf = txtCampoCPF.getText();
+
+        // Verifica se o CPF foi digitado
+        if (cpf.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, digite o CPF do cliente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Verifica se o cliente com o CPF fornecido está cadastrado
+        Cliente cliente = Sistema.hashClientes.get(cpf);
+        if (cliente == null) {
+            JOptionPane.showMessageDialog(this, "Cliente com o CPF fornecido não encontrado.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Verifica se o cliente tem uma conta associada
+        Conta conta = cliente.getConta();
+        if (conta == null) {
+            JOptionPane.showMessageDialog(this, "Cliente não possui uma conta associada.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        switch (operacaoSelecionada) {
+            case "Saque":
+            saque.setVisible(true);
+            txtSaque.setVisible(true);
+            btnEfetuarOperacao.setVisible(true);
+            break;
+            case "Depósito":
+            deposito.setVisible(true);
+            txtDeposito.setVisible(true);
+            btnEfetuarOperacao.setVisible(true);
+            break;
+            case "Ver saldo":
+            verificarSaldo(conta);
+            break;
+            case "Remunera":
+            remunerarConta(conta);
+            break;
+            default:
+            JOptionPane.showMessageDialog(this, "Operação não suportada.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_comboOperacaoActionPerformed
+
+    private void btnBuscarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarContaActionPerformed
+        String cpf = txtCampoCPF.getText();
+
+        // Verifica se o CPF foi digitado
+        if (cpf.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, digite o CPF do cliente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Verifica se o cliente com o CPF fornecido está cadastrado
+        Cliente cliente = Sistema.hashClientes.get(cpf);
+        if (cliente == null) {
+            JOptionPane.showMessageDialog(this, "Cliente com o CPF fornecido não encontrado.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Verifica se o cliente tem uma conta associada
+        Conta conta = cliente.getConta();
+        if (conta == null) {
+            JOptionPane.showMessageDialog(this, "Cliente não possui uma conta associada.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Obtém o tipo da conta e o número da conta
+        String tipoConta = conta.getClass().getSimpleName();
+        int numeroConta = conta.getNumero();
+
+        // Exibe as informações da conta
+        String mensagem = String.format("Cliente: %s\nCPF: %s\nTipo de Conta: %s\nNúmero da Conta: %d\nSaldo: R$ %.2f", cliente.getNome(), cpf, tipoConta, numeroConta, conta.getSaldo());
+        JOptionPane.showMessageDialog(this, mensagem, "Informações da Conta", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnBuscarContaActionPerformed
+
+    private void btnListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarClientesActionPerformed
+        tbListaCliente.setListaContatos(Sistema.hashClientes);
+        this.clienteSelecionadoParaAtualizacao = null;
+        linhaClicadaParaAtualizacao = -1;
+    }//GEN-LAST:event_btnListarClientesActionPerformed
+
+    private void btnCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarContaActionPerformed
+        String selectedTipoConta = (String) comboTipoConta.getSelectedItem();
+
+        // Verifica se um cliente está selecionado na tabela
+        if (clienteSelecionadoParaAtualizacao != null) {
+            int numeroConta = Banco.gerarNumeroConta();
+            txtNumeroConta.setText(String.valueOf(numeroConta));
+
+            if ("Conta Corrente".equals(selectedTipoConta)) {
+                double depositoInicial = Double.parseDouble(txtDepositoInicial.getText());
+                double limite = Double.parseDouble(txtLimite.getText());
+
+                ContaCorrente contaCorrente = new ContaCorrente(clienteSelecionadoParaAtualizacao, numeroConta, depositoInicial, limite);
+                // Adicionar conta ao cliente
+                clienteSelecionadoParaAtualizacao.setConta(contaCorrente);
+                // Adicionar conta à lista de contas do banco
+                addConta(contaCorrente);
+                JOptionPane.showMessageDialog(null, "Conta Corrente criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                // Limpa os campos após a criação da conta
+                limparCampos();
+
+            } else if ("Conta Investimento".equals(selectedTipoConta)) {
+
+                double montanteMinimo = Double.parseDouble(txtMontanteMinimo.getText());
+                double depositoMinimo = Double.parseDouble(txtDepositoMinimo.getText());
+                double depositoInicialInvest = Double.parseDouble(txtDepositoInicialInvest.getText());
+
+                ContaInvestimento contaInvestimento = new ContaInvestimento(clienteSelecionadoParaAtualizacao, numeroConta, depositoInicialInvest, montanteMinimo, depositoMinimo);
+                // Adicionar conta ao cliente
+                clienteSelecionadoParaAtualizacao.setConta(contaInvestimento);
+
+                // Adicionar conta à lista de contas do banco
+                addConta(contaInvestimento);
+                JOptionPane.showMessageDialog(null, "Conta Investimento criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                // Limpa os campos após a criação da conta
+                limparCampos();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione um cliente antes de criar uma conta.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCriarContaActionPerformed
+
+    private void txtDepositoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepositoInicialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDepositoInicialActionPerformed
 
     private void comboTipoContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoContaActionPerformed
         String selectedTipoConta = (String) comboTipoConta.getSelectedItem();
@@ -753,150 +829,133 @@ public class Banco extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_comboTipoContaActionPerformed
 
-    private void txtDepositoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepositoInicialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDepositoInicialActionPerformed
+    private void comboOrdenacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOrdenacaoActionPerformed
+        String criterioSelecionado = (String) comboOrdenacao.getSelectedItem();
+        List<Cliente> clientes = new ArrayList<>(Sistema.hashClientes.values());
 
-    private void btnCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarContaActionPerformed
-        String selectedTipoConta = (String) comboTipoConta.getSelectedItem();
-
-        // Verifica se um cliente está selecionado na tabela
-        if (clienteSelecionadoParaAtualizacao != null) {
-            int numeroConta = Banco.gerarNumeroConta();
-            txtNumeroConta.setText(String.valueOf(numeroConta));
-
-            if ("Conta Corrente".equals(selectedTipoConta)) {
-                double depositoInicial = Double.parseDouble(txtDepositoInicial.getText());
-                double limite = Double.parseDouble(txtLimite.getText());
-                
-                ContaCorrente contaCorrente = new ContaCorrente(clienteSelecionadoParaAtualizacao, numeroConta, depositoInicial, limite);
-                // Adicionar conta ao cliente
-                clienteSelecionadoParaAtualizacao.setConta(contaCorrente);
-                // Adicionar conta à lista de contas do banco
-                addConta(contaCorrente);
-                JOptionPane.showMessageDialog(null, "Conta Corrente criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                
-                // Limpa os campos após a criação da conta
-                limparCampos();
-
-            } else if ("Conta Investimento".equals(selectedTipoConta)) {
-                
-                double montanteMinimo = Double.parseDouble(txtMontanteMinimo.getText());
-                double depositoMinimo = Double.parseDouble(txtDepositoMinimo.getText());
-                double depositoInicialInvest = Double.parseDouble(txtDepositoInicialInvest.getText());
-                
-                ContaInvestimento contaInvestimento = new ContaInvestimento(clienteSelecionadoParaAtualizacao, numeroConta, depositoInicialInvest, montanteMinimo, depositoMinimo);
-                // Adicionar conta ao cliente
-                clienteSelecionadoParaAtualizacao.setConta(contaInvestimento);
-                // Adicionar conta à lista de contas do banco
-                addConta(contaInvestimento);
-                JOptionPane.showMessageDialog(null, "Conta Investimento criada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                
-                // Limpa os campos após a criação da conta
-                limparCampos();
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, selecione um cliente antes de criar uma conta.", "Aviso", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_btnCriarContaActionPerformed
-
-    private void btnListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarClientesActionPerformed
-        tbListaCliente.setListaContatos(Sistema.hashClientes);
-        this.clienteSelecionadoParaAtualizacao = null;
-        linhaClicadaParaAtualizacao = -1;
-    }//GEN-LAST:event_btnListarClientesActionPerformed
-
-    private void btnBuscarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarContaActionPerformed
-        String cpf = txtCampoCPF.getText();
-
-        // Verifica se o CPF foi digitado
-        if (cpf.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, digite o CPF do cliente.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // Verifica se o cliente com o CPF fornecido existe no banco de dados
-        Cliente cliente = Sistema.hashClientes.get(cpf);
-        if (cliente == null) {
-            JOptionPane.showMessageDialog(this, "Cliente com o CPF fornecido não encontrado.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // Verifica se o cliente tem uma conta associada
-        Conta conta = cliente.getConta();
-        if (conta == null) {
-            JOptionPane.showMessageDialog(this, "Cliente não possui uma conta associada.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // Obtém o tipo da conta e o número da conta
-        String tipoConta = conta.getClass().getSimpleName();
-        int numeroConta = conta.getNumero();
-
-        // Exibe as informações da conta em uma caixa de diálogo
-        String mensagem = String.format("Cliente: %s\nCPF: %s\nTipo de Conta: %s\nNúmero da Conta: %d\nSaldo: R$ %.2f", cliente.getNome(), cpf, tipoConta, numeroConta, conta.getSaldo());
-        JOptionPane.showMessageDialog(this, mensagem, "Informações da Conta", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_btnBuscarContaActionPerformed
-
-    
-    
-    private void comboOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacaoActionPerformed
-        
-        // Primeiro, ocultamos todos os campos
-        deposito.setVisible(false);
-        txtDeposito.setVisible(false);
-        saque.setVisible(false);
-        txtSaque.setVisible(false);
-        btnEfetuarOperacao.setVisible(false);
-        
-        
-        String operacaoSelecionada = (String) comboOperacao.getSelectedItem();
-        String cpf = txtCampoCPF.getText();
-
-        // Verifica se o CPF foi digitado
-        if (cpf.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, digite o CPF do cliente.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // Verifica se o cliente com o CPF fornecido existe no banco de dados
-        Cliente cliente = Sistema.hashClientes.get(cpf);
-        if (cliente == null) {
-            JOptionPane.showMessageDialog(this, "Cliente com o CPF fornecido não encontrado.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // Verifica se o cliente tem uma conta associada
-        Conta conta = cliente.getConta();
-        if (conta == null) {
-            JOptionPane.showMessageDialog(this, "Cliente não possui uma conta associada.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        switch (operacaoSelecionada) {
-            case "Saque":
-                saque.setVisible(true);
-                txtSaque.setVisible(true);
-                btnEfetuarOperacao.setVisible(true);
-                break;
-            case "Depósito":
-                deposito.setVisible(true);
-                txtDeposito.setVisible(true);
-                btnEfetuarOperacao.setVisible(true);
-                break;
-            case "Ver saldo":
-                verificarSaldo(conta);
-                break;
-            case "Remunera":
-                remunerarConta(conta);
-                break;
+        switch (criterioSelecionado) {
+            case "Nome":
+            Collections.sort(clientes, OrdenacaoCliente.nomeOrdenacao);
+            break;
+            case "Sobrenome":
+            Collections.sort(clientes, OrdenacaoCliente.sobrenomeOrdenacao);
+            break;
             default:
-                JOptionPane.showMessageDialog(this, "Operação não suportada.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Critério de ordenação não suportado.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-    }//GEN-LAST:event_comboOperacaoActionPerformed
+        atualizarListaClientes(clientes);
+    }//GEN-LAST:event_comboOrdenacaoActionPerformed
 
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        txtNome.setText("");
+        txtSobreNome.setText("");
+        txtRG.setText("");
+        txtCPF.setText("");
+        txtEndereco.setText("");
+        tableModel.setListaContatos(Sistema.hashClientes);
+
+        //this.clienteSelecionadoParaAtualizacao = null;;
+        //linhaClicadaParaAtualizacao=-1;
+
+        //a limpeza dos campos de texto afetará apenas tableModel e não tbListaCliente
+        if (tabelaListaClientes.getModel() == tableModel) {
+            this.clienteSelecionadoParaAtualizacao = null;
+            linhaClicadaParaAtualizacao = -1;
+        }
+    }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        tableModel.setListaContatos(Sistema.hashClientes);
+        this.clienteSelecionadoParaAtualizacao = null;
+        linhaClicadaParaAtualizacao=-1;
+    }//GEN-LAST:event_btnListarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        List<Cliente> listaExcluir = getClienteParaExcluirDaTabela();
+        if(listaExcluir.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Selecione alguma linha para excluir.\n", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        this.tableModel.removeClientes(listaExcluir);
+        for(Cliente c:listaExcluir)
+        Sistema.hashClientes.remove(c.getCpf());
+        this.clienteSelecionadoParaAtualizacao = null;
+        linhaClicadaParaAtualizacao=-1;
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        Cliente c = this.getClienteParaAtualizar();
+        if(c==null){
+            return;
+        }
+        Sistema.hashClientes.replace(c.getCpf(), c);
+        this.tableModel.atualizarCliente(linhaClicadaParaAtualizacao);
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        String nome = txtNome.getText();
+        String sobreNome = txtSobreNome.getText();
+        String rg = txtRG.getText();
+        String cpf = txtCPF.getText();
+        String endereco = txtEndereco.getText();
+
+        // Verifica se os campos estão vazios:
+        if (nome.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite o nome do cliente.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        if (sobreNome.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite o sobrenome do cliente.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        if (rg.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, digite o RG do cliente.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        if(cpf.isEmpty()){
+            JOptionPane.showMessageDialog(null,"CPF não pode ser vazio.\n", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        if(rg.isEmpty()){
+            JOptionPane.showMessageDialog(null,"RG não pode ser vazio.\n", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        Cliente c = new Cliente(nome,sobreNome,rg,cpf,endereco);
+        Sistema.hashClientes.put(cpf, c);
+        this.tableModel.setListaContatos(Sistema.hashClientes);
+        this.tabClienteScroll.setRowSelectionInterval(Sistema.hashClientes.size()-1, Sistema.hashClientes.size()-1);
+        this.clienteSelecionadoParaAtualizacao = c;
+        linhaClicadaParaAtualizacao = Sistema.hashClientes.size()-1;
+    }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEnderecoActionPerformed
+
+    private void txtRGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRGActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRGActionPerformed
+
+    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCPFActionPerformed
+
+    private void txtSobreNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSobreNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSobreNomeActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
+
+    
     private void realizarSaque(Conta conta) {
-        // Lógica para realizar um saque
         String valorSaqueStr = txtSaque.getText();
         if (valorSaqueStr == null || valorSaqueStr.isEmpty()) {
             return;
@@ -916,7 +975,6 @@ public class Banco extends javax.swing.JFrame {
     }
 
     private void realizarDeposito(Conta conta) {
-        // Lógica para realizar um depósito
         String valorDepositoStr = txtDeposito.getText();
         if (valorDepositoStr == null || valorDepositoStr.isEmpty()) {
             return;
@@ -935,68 +993,15 @@ public class Banco extends javax.swing.JFrame {
     }
 
     private void verificarSaldo(Conta conta) {
-        // Lógica para verificar saldo
         double saldo = conta.getSaldo();
         JOptionPane.showMessageDialog(this, "Saldo atual: " + saldo, "Saldo", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void remunerarConta(Conta conta) {
-        // Lógica para remunerar a conta
         conta.remunera();
         JOptionPane.showMessageDialog(this, "Conta remunerada com sucesso. Saldo atual: R$ " + conta.getSaldo(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }
     
-    
-    private void btnEfetuarOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEfetuarOperacaoActionPerformed
-        String operacaoSelecionada = (String) comboOperacao.getSelectedItem();
-        String cpf = txtCampoCPF.getText();
-
-        // Verifica se o cliente com o CPF fornecido existe no banco de dados
-        Cliente cliente = Sistema.hashClientes.get(cpf);
-        if (cliente == null) {
-            JOptionPane.showMessageDialog(this, "Cliente com o CPF fornecido não encontrado.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // Verifica se o cliente tem uma conta associada
-        Conta conta = cliente.getConta();
-        if (conta == null) {
-            JOptionPane.showMessageDialog(this, "Cliente não possui uma conta associada.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // Verifica se a operação selecionada é um Saque ou Depósito
-        switch (operacaoSelecionada) {
-            case "Saque":
-                realizarSaque(conta);
-                break;
-            case "Depósito":
-                realizarDeposito(conta);
-                break;
-            default:
-                JOptionPane.showMessageDialog(this, "Operação não suportada.", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnEfetuarOperacaoActionPerformed
-
-    private void comboOrdenacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOrdenacaoActionPerformed
-        String criterioSelecionado = (String) comboOrdenacao.getSelectedItem();
-        List<Cliente> clientes = new ArrayList<>(Sistema.hashClientes.values());
-
-        switch (criterioSelecionado) {
-            case "Nome":
-                Collections.sort(clientes, OrdenacaoCliente.nomeOrdenacao);
-                break;
-            case "Sobrenome":
-                Collections.sort(clientes, OrdenacaoCliente.sobrenomeOrdenacao);
-                break;
-            default:
-                JOptionPane.showMessageDialog(this, "Critério de ordenação não suportado.", "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
-        }
-
-        atualizarListaClientes(clientes);
-    }//GEN-LAST:event_comboOrdenacaoActionPerformed
-
     
     private void atualizarListaClientes(List<Cliente> clientes) {
         tableModel.setListaContatos(clientes);
@@ -1020,7 +1025,6 @@ public class Banco extends javax.swing.JFrame {
         // Seta os dados no formulário
         this.setCliente(cliente);
     }
-    
     
     private void formWindowActivated(java.awt.event.WindowEvent evt) {                                     
         // TODO add your handling code here:

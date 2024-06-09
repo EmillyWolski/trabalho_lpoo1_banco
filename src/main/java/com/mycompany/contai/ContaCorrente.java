@@ -25,6 +25,7 @@ public class ContaCorrente extends Conta {
             if (valor <= getSaldo() + limite) {
                 double saldoAtual = getSaldo();
                 saldoAtual -= valor;
+                setSaldo(saldoAtual);
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "O valor do saque ultrapassa o limite da conta.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -39,7 +40,8 @@ public class ContaCorrente extends Conta {
     @Override
     public void remunera() {
         double saldoAtual = getSaldo();
-        saldoAtual += saldoAtual * 0.02; // Aplicar remuneração de 2%
+        saldoAtual += saldoAtual * 0.01; // Aplicar remuneração de 1%
+        setSaldo(saldoAtual); // Atualiza o saldo no objeto Conta
     }
 
     @Override

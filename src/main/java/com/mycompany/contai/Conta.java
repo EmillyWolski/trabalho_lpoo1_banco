@@ -68,11 +68,7 @@ public abstract class Conta implements ContaI {
     }
 
     @Override
-    public void remunera() {
-        double saldoAtual = getSaldo();
-        saldoAtual += saldoAtual * 0.02; // Aplicar remuneração de 2%
-        setSaldo(saldoAtual); // Atualiza o saldo no objeto Conta
-    }
+    public abstract void remunera(); // Método abstrato, porque cada conta tem seu tipo próprio de remuneração
 
     @Override
     public String toString() {
