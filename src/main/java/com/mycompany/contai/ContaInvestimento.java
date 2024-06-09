@@ -49,6 +49,7 @@ public class ContaInvestimento extends Conta {
     public void remunera() {
         double saldoAtual = getSaldo();
         saldoAtual += saldoAtual * 0.02; // Aplicar remuneração de 2%
+        setSaldo(saldoAtual); // Atualiza o saldo no objeto Conta
     }
 
     @Override

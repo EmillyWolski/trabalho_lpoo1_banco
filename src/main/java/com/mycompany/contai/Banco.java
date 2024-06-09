@@ -110,6 +110,7 @@ public class Banco extends javax.swing.JFrame {
         tabClienteScroll = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        comboOrdenacao = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -239,6 +240,13 @@ public class Banco extends javax.swing.JFrame {
 
         jLabel1.setText("Cadastro de Clientes");
 
+        comboOrdenacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordenar por", "Nome", "Sobrenome" }));
+        comboOrdenacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboOrdenacaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sobrenomeLayout = new javax.swing.GroupLayout(sobrenome);
         sobrenome.setLayout(sobrenomeLayout);
         sobrenomeLayout.setHorizontalGroup(
@@ -246,10 +254,15 @@ public class Banco extends javax.swing.JFrame {
             .addGroup(sobrenomeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sobrenomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(sobrenomeLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(122, 122, 122))
                     .addGroup(sobrenomeLayout.createSequentialGroup()
                         .addComponent(rg, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(sobrenomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(sobrenomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(sobrenomeLayout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(txtRG))
                             .addGroup(sobrenomeLayout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addComponent(btnCadastrar)
@@ -257,14 +270,12 @@ public class Banco extends javax.swing.JFrame {
                                 .addComponent(btnAtualizar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnExcluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                                .addGap(50, 50, 50)
                                 .addComponent(btnListar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLimpar)
-                                .addGap(6, 6, 6))
-                            .addGroup(sobrenomeLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(txtRG))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboOrdenacao, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(sobrenomeLayout.createSequentialGroup()
                         .addGroup(sobrenomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -272,9 +283,9 @@ public class Banco extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addGroup(sobrenomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(sobrenomeLayout.createSequentialGroup()
-                                .addComponent(txtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+                                .addComponent(txtCPF)
                                 .addGap(3, 3, 3))
-                            .addComponent(txtEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)))
+                            .addComponent(txtEndereco)))
                     .addGroup(sobrenomeLayout.createSequentialGroup()
                         .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
@@ -282,7 +293,7 @@ public class Banco extends javax.swing.JFrame {
                     .addGroup(sobrenomeLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtSobreNome, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE))
+                        .addComponent(txtSobreNome))
                     .addComponent(jSeparator1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -320,7 +331,8 @@ public class Banco extends javax.swing.JFrame {
                             .addComponent(btnAtualizar)
                             .addComponent(btnExcluir)
                             .addComponent(btnListar)
-                            .addComponent(btnLimpar))
+                            .addComponent(btnLimpar)
+                            .addComponent(comboOrdenacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(43, 43, 43))
                     .addGroup(sobrenomeLayout.createSequentialGroup()
                         .addComponent(nome)
@@ -408,7 +420,7 @@ public class Banco extends javax.swing.JFrame {
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(comboTipoConta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 422, Short.MAX_VALUE))
+                                .addGap(0, 449, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(depositoInicialInvest, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -521,7 +533,7 @@ public class Banco extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
                     .addComponent(jSeparator3)))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(7, 7, 7)
@@ -589,7 +601,7 @@ public class Banco extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 622, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -929,7 +941,7 @@ public class Banco extends javax.swing.JFrame {
     private void remunerarConta(Conta conta) {
         // Lógica para remunerar a conta
         conta.remunera();
-        JOptionPane.showMessageDialog(this, "Conta remunerada com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Conta remunerada com sucesso. Saldo atual: R$ " + conta.getSaldo(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }
     
     
@@ -964,6 +976,10 @@ public class Banco extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Operação não suportada.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEfetuarOperacaoActionPerformed
+
+    private void comboOrdenacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOrdenacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboOrdenacaoActionPerformed
 
     private void tabClienteMouseClicked(java.awt.event.MouseEvent evt) {                                        
         //Pega a linha clicada
@@ -1074,6 +1090,7 @@ public class Banco extends javax.swing.JFrame {
     private javax.swing.JButton btnListarClientes;
     private javax.swing.JLabel campoCPF;
     private javax.swing.JComboBox<String> comboOperacao;
+    private javax.swing.JComboBox<String> comboOrdenacao;
     private javax.swing.JComboBox<String> comboTipoConta;
     private javax.swing.JLabel cpf;
     private javax.swing.JLabel deposito;

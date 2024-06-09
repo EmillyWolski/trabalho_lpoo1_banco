@@ -62,9 +62,17 @@ public abstract class Conta implements ContaI {
     public double getSaldo() {
         return saldo;
     }
+    
+    protected void setSaldo(double novoSaldo) {
+        this.saldo = novoSaldo;
+    }
 
     @Override
-    public abstract void remunera();
+    public void remunera() {
+        double saldoAtual = getSaldo();
+        saldoAtual += saldoAtual * 0.02; // Aplicar remuneração de 2%
+        setSaldo(saldoAtual); // Atualiza o saldo no objeto Conta
+    }
 
     @Override
     public String toString() {

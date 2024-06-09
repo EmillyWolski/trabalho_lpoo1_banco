@@ -39,7 +39,7 @@ public class ContaCorrente extends Conta {
     @Override
     public void remunera() {
         double saldoAtual = getSaldo();
-        saldoAtual += saldoAtual * 0.01; // Aplicar remuneração de 1%
+        saldoAtual += saldoAtual * 0.02; // Aplicar remuneração de 2%
     }
 
     @Override
