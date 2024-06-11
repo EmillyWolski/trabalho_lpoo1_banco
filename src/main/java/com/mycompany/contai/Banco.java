@@ -894,7 +894,7 @@ public class Banco extends javax.swing.JFrame {
         }
 
         if (ClientePossuiConta) {
-            int confirmacao = JOptionPane.showConfirmDialog(null, "Todos os dados e a conta dos cliente serão excluídos. Deseja continuar?", "Confirmação", JOptionPane.YES_NO_OPTION);
+            int confirmacao = JOptionPane.showConfirmDialog(null, "Todos os dados e a conta do cliente serão excluídos. Deseja continuar?", "Confirmação", JOptionPane.YES_NO_OPTION);
             if (confirmacao != JOptionPane.YES_OPTION) {
                 return; // Se o usuário cancelar, interrompe a exclusão
             }
