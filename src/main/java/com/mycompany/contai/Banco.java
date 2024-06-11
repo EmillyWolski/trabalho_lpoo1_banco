@@ -748,6 +748,13 @@ public class Banco extends javax.swing.JFrame {
 
         // Verifica se um cliente está selecionado na tabela
         if (clienteSelecionadoParaAtualizacao != null) {
+            
+            // Verifica se o cliente já possui uma conta
+            if (clienteSelecionadoParaAtualizacao.getConta() != null) {
+                JOptionPane.showMessageDialog(this, "O cliente já possui uma conta associada.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                return; // Interrompe a criação da conta
+            }
+            
             int numeroConta = Banco.gerarNumeroConta();
             txtNumeroConta.setText(String.valueOf(numeroConta));
 
@@ -877,11 +884,32 @@ public class Banco extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Selecione alguma linha para excluir.\n", "Informação", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
+        // Verificar se o cliente possui conta antes de excluir
+        boolean ClientePossuiConta = false;
+        for (Cliente cliente : listaExcluir) {
+            if (cliente.getConta() != null) {
+                ClientePossuiConta = true;
+                break;
+            }
+        }
+
+        if (ClientePossuiConta) {
+            int confirmacao = JOptionPane.showConfirmDialog(null, "Todos os dados e a conta dos cliente serão excluídos. Deseja continuar?", "Confirmação", JOptionPane.YES_NO_OPTION);
+            if (confirmacao != JOptionPane.YES_OPTION) {
+                return; // Se o usuário cancelar, interrompe a exclusão
+            }
+        }
+
+        // Remove clientes da tabela e do hash
         this.tableModel.removeClientes(listaExcluir);
-        for(Cliente c:listaExcluir)
-        Sistema.hashClientes.remove(c.getCpf());
+        for (Cliente c : listaExcluir) {
+            Sistema.hashClientes.remove(c.getCpf());
+        }
+
+        JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
         this.clienteSelecionadoParaAtualizacao = null;
-        linhaClicadaParaAtualizacao=-1;
+        linhaClicadaParaAtualizacao = -1;
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
