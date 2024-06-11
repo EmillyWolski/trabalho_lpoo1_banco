@@ -901,28 +901,8 @@ public class Banco extends javax.swing.JFrame {
         String endereco = txtEndereco.getText();
 
         // Verifica se os campos estão vazios:
-        if (nome.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor, digite o nome do cliente.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
-        if (sobreNome.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor, digite o sobrenome do cliente.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
-        if (rg.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor, digite o RG do cliente.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
-        if(cpf.isEmpty()){
-            JOptionPane.showMessageDialog(null,"CPF não pode ser vazio.\n", "Informação", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
-        if(rg.isEmpty()){
-            JOptionPane.showMessageDialog(null,"RG não pode ser vazio.\n", "Informação", JOptionPane.INFORMATION_MESSAGE);
+        if (nome.isEmpty() || sobreNome.isEmpty() || rg.isEmpty() || cpf.isEmpty() || endereco.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
