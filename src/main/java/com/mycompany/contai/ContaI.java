@@ -7,6 +7,9 @@ package com.mycompany.contai;
  *
  * @author emill
  */
+
+// Possui métodos públicos e abstratos
+
 public interface ContaI {
 
     public boolean deposita(double valor);

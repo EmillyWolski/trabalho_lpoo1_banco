@@ -10,6 +10,10 @@ import java.util.Objects;
  *
  * @author emill
  */
+
+// Contém as infos dos clientes e também os getters e setters para lidar com esses dados
+
+
 public class Cliente {
     private String nome;
     private String sobreNome;
