@@ -10,17 +10,26 @@ import javax.swing.JOptionPane;
  *
  * @author emill
  */
+
+
+// Além de implementar a interface ContaI, contém as operações da conta:
+//(deposita, saca, verSaldo e remunera)e ainda os getters e setters
+
+
 public abstract class Conta implements ContaI {
+    // Atributos
     private Cliente dono;
     private int numero;
     private double saldo;
 
+    // Construtor para inicializar os atributos
     public Conta(Cliente dono, int numero, double saldoInicial) {
         this.dono = dono;
         this.numero = numero;
         this.saldo = saldoInicial;
     }
 
+    // Métodos da interface ContaI implementados
     @Override
     public boolean deposita(double valor) {
         if (valor > 0) {
@@ -67,9 +76,11 @@ public abstract class Conta implements ContaI {
         this.saldo = novoSaldo;
     }
 
+    // Método abstrato que é implementado pelas sub-classes (ContaCorrente e ContaInvestimento)
     @Override
     public abstract void remunera(); // Método abstrato, porque cada conta tem sua própria implementação de remuneração
 
+    // Representação em string dos atributos da conta
     @Override
     public String toString() {
         return "Conta{" +

@@ -11,14 +11,20 @@ import javax.swing.JOptionPane;
  * @author emill
  */
 
+
+// Implamenta os métodos específicos da ContaCorrente, extendendo da classe Conta, que é abstrata
+
+// Declara a classe ContaCorrente como uma extensão (subclasse) da classe abstrata Conta
 public class ContaCorrente extends Conta {
     private double limite;
 
+    // Construtor (tbm o da super classe)
     public ContaCorrente(Cliente dono, int numero, double saldoInicial, double limite) {
         super(dono, numero, saldoInicial);
         this.limite = limite;
     }
 
+    // Substituindo um método da superclasse 
     @Override
     public boolean saca(double valor) {
         if (valor > 0) {

@@ -10,7 +10,12 @@ import java.util.Objects;
  *
  * @author emill
  */
+
+// Contém as infos dos clientes e também os getters e setters para lidar com esses dados
+
+
 public class Cliente {
+    // Atributos privados
     private String nome;
     private String sobreNome;
     private String rg;
@@ -18,6 +23,7 @@ public class Cliente {
     private String endereco;
     private Conta conta;
 
+    // Construtor
     public Cliente(String nome, String sobreNome, String rg, String cpf, String endereco) {
         this.nome = nome;
         this.sobreNome = sobreNome;
@@ -26,12 +32,15 @@ public class Cliente {
         this.endereco = endereco;
     }
 
+    // Getters que retornam (return) os valores dos atributos e
+    // Setters que permitem alteração (com .this definem ou atualizam o valor de um atributo) 
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+        // this para evitar ambiguidades quando os nomes dos parâmetros são iguais aos nomes dos atributos
     }
 
     public String getSobreNome() {

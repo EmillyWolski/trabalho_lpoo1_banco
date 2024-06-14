@@ -8,18 +8,27 @@ package com.mycompany.contai;
  *
  * @author emill
  */
+
+// Implamenta os métodos específicos da ContaInvestimento, extendendo da classe Conta, que é abstrata
+
+
 import javax.swing.JOptionPane;
 
+// Declara a classe ContaInvestimento como uma extensão (subclasse) da classe abstrata Conta
 public class ContaInvestimento extends Conta {
+    
+    // Atributos
     private double montanteMinimo;
     private double depositoMinimo;
 
+    // Construtor para inicializar os atributos
     public ContaInvestimento(Cliente dono, int numero, double saldoInicial, double montanteMinimo, double depositoMinimo) {
         super(dono, numero, saldoInicial);
         this.montanteMinimo = montanteMinimo;
         this.depositoMinimo = depositoMinimo;
     }
 
+    // Substituindo um método da superclasse 
     @Override
     public boolean deposita(double valor) {
         if (valor >= depositoMinimo) {
