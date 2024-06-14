@@ -68,7 +68,7 @@ public abstract class Conta implements ContaI {
     }
 
     @Override
-    public abstract void remunera(); // Método abstrato, porque cada conta tem seu tipo próprio de remuneração
+    public abstract void remunera(); // Método abstrato, porque cada conta tem sua própria implementação de remuneração
 
     @Override
     public String toString() {
